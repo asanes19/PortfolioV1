@@ -9,10 +9,11 @@ const MainPage = () => {
 
   useEffect(() => {
     document.title = "Abdelrahman Sherif — Software Engineer";
+    console.log(activeSection);
   }, []);
 
   return (
-    <div className="relative text-slate-600 antialiased selection:bg-slate-300 selection:text-slate-900">
+    <div className="relative text-body bg-bg antialiased selection:bg-accent selection:text-white">
       <div className="mx-auto min-h-screen max-w-screen-xl px-6 md:px-12">
         <div className="flex flex-col md:flex-row md:justify-between md:gap-4">
           <div className="md:w-[48%] md:sticky top-0 self-start">

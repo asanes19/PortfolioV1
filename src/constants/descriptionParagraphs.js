@@ -1,6 +1,6 @@
 const descriptionParagraphs = [
-  `I am a software engineer focused on building practical, user friendly digital products. I turn complex requirements into simple experiences that are easy to use and easy to maintain.`,
-  `I build portals and internal tools, connect systems through APIs, and streamline workflows with automation. I care about clean UI, solid logic, and shipping features that solve real problems.`,
+  `I build the systems companies run on — portals, CRMs, and dashboards built for real complexity, integrated with live APIs, and shipped on real deadlines.`,
+  `Sole front-end engineer at a 1,000+ agent real estate firm, I've owned every architectural decision across 5+ internal systems and 3 live CRM integrations. I design, build, and deliver end-to-end — from requirements meetings to production.`,
 ];
 
 export default descriptionParagraphs;

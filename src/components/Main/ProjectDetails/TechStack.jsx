@@ -5,7 +5,7 @@ const TechStack = ({ project }) => {
       {project.tech?.map((t, i) => (
         <span
           key={i}
-          className="bg-slate-700 text-[#e2e8f0] h-fit text-xs px-3 py-1 rounded-full font-medium"
+          className="tech-pill"
         >
           {t.tech || t}
         </span>

@@ -6,7 +6,7 @@ const Title = ({ project }) => {
   return (
     <div className="flex items-center gap-4">
       <button
-        className="text-slate-700 cursor-pointer border border-slate-700 rounded-full p-2 underline text-sm text-center"
+        className="text-body cursor-pointer border border-border-subtle hover:text-heading hover:border-accent transition-colors rounded-full p-2 underline text-sm text-center"
         onClick={() => navigate(-1)}
       >
         <IoChevronBackOutline />

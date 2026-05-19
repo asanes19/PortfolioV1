@@ -4,7 +4,7 @@ const VideoRender = ({ project }) => {
     <div>
                   {project.video?.url && (
               <video
-                className="rounded-lg border border-slate-300"
+                className="rounded-lg border border-border"
                 src={project.video.url}
                 autoPlay
                 loop

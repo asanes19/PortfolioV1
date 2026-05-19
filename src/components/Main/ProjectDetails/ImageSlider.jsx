@@ -32,7 +32,7 @@ const ImageSlider = ({ project }) => {
   };
 
   return (
-    <div className="relative w-full overflow-hidden rounded-xl border border-slate-200 group bg-slate-100">
+    <div className="relative w-full overflow-hidden rounded-xl border border-border group bg-bg">
       {/* Slider Container */}
       <div 
         className="flex transition-transform duration-700 ease-in-out"
@@ -54,15 +54,15 @@ const ImageSlider = ({ project }) => {
         <>
           <button
             onClick={goToPrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/80 p-2 rounded-full cursor-pointer backdrop-blur-sm transition-all"
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 p-2 rounded-full cursor-pointer backdrop-blur-sm transition-all text-white border border-border-subtle"
           >
-            <IoChevronBackOutline className="text-slate-800" />
+            <IoChevronBackOutline className="text-white" />
           </button>
           <button
             onClick={goToNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/80 p-2 rounded-full cursor-pointer backdrop-blur-sm transition-all"
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 p-2 rounded-full cursor-pointer backdrop-blur-sm transition-all text-white border border-border-subtle"
           >
-            <IoChevronForwardOutline className="text-slate-800" />
+            <IoChevronForwardOutline className="text-white" />
           </button>
         </>
       )}

@@ -20,7 +20,7 @@ const icons = [
 
 const SocialMedia = () => {
   return (
-    <div className="flex gap-4 text-xl text-slate-500 pt-6">
+    <div className="flex gap-4 text-xl text-body pt-6">
       {icons.map((item, index) => (
         <a
           key={index}
@@ -28,7 +28,7 @@ const SocialMedia = () => {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={item.label}
-          className="hover:text-slate-700 transition-colors duration-200"
+          className="hover:text-heading transition-colors duration-200"
         >
           {item.icon}
         </a>

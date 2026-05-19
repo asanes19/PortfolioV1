@@ -1,13 +1,13 @@
 import { MdArrowOutward } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import { projectsData } from "../../data/projectsData";
+import { projectsData } from "../../constants/projectsData";
 import { normalizeTech } from "../../utils/normalizeTech";
 import { getImageUrl } from "../../utils/getImageUrl";
 
 const Projects = () => {
   const navigate = useNavigate();
 
-  const visibleProjects = projectsData.slice(0, 6);
+  const visibleProjects = projectsData.slice(0, 4);
 
   return (
     <div className="flex flex-col gap-6">
@@ -26,7 +26,7 @@ const Projects = () => {
                 <img
                   src={imageUrl}
                   alt={project.title}
-                  className="w-full max-w-[200px] rounded border-2 border-slate-300"
+                  className="w-full max-w-[200px] rounded border border-border"
                 />
               )}
             </div>
@@ -37,7 +37,7 @@ const Projects = () => {
                   <MdArrowOutward />
                 </span>
               </div>
-              <p className="text-slate-600">{project.description}</p>
+              <p className="text-body">{project.description}</p>
               <div className="flex gap-2 flex-wrap">
                 {techList.map((techItem, i) => (
                   <span
@@ -55,7 +55,7 @@ const Projects = () => {
 
       <button
         onClick={() => navigate("/projects")}
-        className="text-slate-800 font-semibold hover:text-slate-600 transition-all text-sm flex items-center gap-1 self-start mt-4"
+        className="text-heading font-semibold hover:text-body transition-all text-sm flex items-center gap-1 self-start mt-4"
       >
         View Full Project Archive <MdArrowOutward />
       </button>

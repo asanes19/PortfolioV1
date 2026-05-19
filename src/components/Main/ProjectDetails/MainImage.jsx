@@ -5,7 +5,7 @@ const MainImage = ({ project }) => {
                     <img
                 src={project.mainImage}
                 alt={project.name}
-                className="rounded-lg border border-slate-300"
+                className="rounded-lg border border-border"
               />
     </div>
   )

@@ -1,14 +1,16 @@
 const skillGroups = {
-  "Front-End": [
+  "Core Stack": [
     "React",
     "Next.js",
-    "JavaScript",
     "TypeScript",
+    "JavaScript",
+    "Tailwind CSS"
+  ],
+  "Front-End": [
     "HTML",
     "CSS",
-    "Tailwind",
-    "Bootstrap",
     "SASS",
+    "Bootstrap",
     "Framer Motion",
     "GSAP",
     "jQuery",
@@ -27,57 +29,55 @@ const skillGroups = {
     "Postman",
     "Swagger"
   ],
-  "Data Analysis": [
+  "Data & Analytics": [
     "Python",
     "SQL",
-    "Power BI"
+    "Power BI",
+    "SQLite"
   ],
-  "Version Control & Deployment": [
+  "DevOps & Tools": [
     "Git",
     "GitHub",
-    "GitLab",
     "CI/CD",
-    "FileZilla"
+    "FileZilla",
+    "AWS (SES, SNS)"
   ],
-  "Agile & Collaboration": [
-    "Agile methodologies",
-    "Scrum",
-    "Jira",
-    "Confluence"
-  ],
-  "Other Tools & Platforms": [
-    "AWS (SES, SNS)",
-    "WordPress",
+  "Design & Collaboration": [
     "Figma",
-    "Canva"
+    "Canva",
+    "Jira",
+    "Confluence",
+    "Scrum",
+    "Agile"
+  ],
+  "Other": [
+    "WordPress"
   ]
 };
 
 const Skills = () => {
   return (
-    <section className="space-y-5 text-sm">
-      {Object.entries(skillGroups).map(([group, skills]) => (
-        <div
-          key={group}
-          className="flex flex-wrap items-center gap-x-3 gap-y-2"
-        >
-          {/* Group label */}
-          <span className="font-semibold whitespace-nowrap">
-            {group}:
-          </span>
+<section className="space-y-4 text-sm text-gray-300">
+  {Object.entries(skillGroups).map(([group, skills]) => (
+    <div key={group} className="flex items-start gap-6">
+      
+      {/* Left Label */}
+      <span className="w-32 shrink-0 text-gray-500 font-medium">
+        {group}
+      </span>
 
-          {/* Pills */}
-          {skills.map((skill) => (
-            <span
-              key={skill}
-              className="tech-pill hover:bg-slate-300/60 transition"
-            >
-              {skill}
-            </span>
-          ))}
-        </div>
-      ))}
-    </section>
+      {/* Skills Inline */}
+      <div className="flex flex-wrap gap-2">
+        {skills.map((skill) => (
+          <span key={skill} className="tech-pill">
+            {skill}
+          </span>
+        ))}
+      </div>
+
+    </div>
+  ))}
+</section>
   );
 };
 

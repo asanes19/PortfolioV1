@@ -24,7 +24,7 @@ const ImageGallery = ({ project }) => {
               key={index}
               src={imageUrl}
               alt={imageName}
-              className="rounded-lg border border-slate-300"
+              className="rounded-lg border border-border"
             />
           );
         })}

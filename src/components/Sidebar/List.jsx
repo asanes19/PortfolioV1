@@ -1,30 +1,22 @@
-import menuItems from "../../data/listItem";
+import menuItems from "../../constants/listItem";
 
 const List = ({ activeSection }) => {
   return (
-    <div className="hidden md:flex flex-col space-y-6 pt-24">
+    <div className="hidden md:flex flex-col space-y-2 pt-24">
       {menuItems.map((item) => (
-        <div
+        <a
+          href={`#${item.id}`}
           key={item.id}
-          className="flex cursor-pointer items-center gap-4 group transition-all duration-200"
+          className={`cursor-pointer px-4 py-2 transition-all duration-200 border-l-2 ${
+            activeSection === item.id
+              ? "border-accent text-white"
+              : "border-transparent text-subtle hover:text-heading hover:border-border-subtle"
+          }`}
         >
-          <div
-            className={`h-px transition-all ${
-              activeSection === item.id
-                ? "bg-slate-800 w-16"
-                : "bg-slate-300 w-8 group-hover:w-16 group-hover:bg-slate-800"
-            }`}
-          />
-          <span
-            className={`text-xs tracking-widest uppercase transition-colors duration-200 ${
-              activeSection === item.id
-                ? "text-slate-800 font-semibold"
-                : "text-slate-400 group-hover:text-slate-800 group-hover:font-semibold"
-            }`}
-          >
+          <span className="text-[10px] md:text-[11px] tracking-[0.1em] uppercase font-semibold">
             {item.label}
           </span>
-        </div>
+        </a>
       ))}
     </div>
   );
