@@ -2,12 +2,12 @@
 
 export const projectsData = [
   {
-    title: "Power Assist – Data & Automation Platform",
+    title: "PSAI – Data & Automation Platform",
     slug: "power-assist",
     description:
       "An internal AI-powered platform built to automate manual real estate operations, eliminate data entry, and surface actionable insights for decision-makers.",
     mainImage:
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1755176906/Latest_Products_2_evmrqv.png",
+      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1779536037/Screenshot_2026-05-23_153015_ssufan.png",
     gallery: [],
     video: null,
     tech: [
@@ -18,6 +18,7 @@ export const projectsData = [
       "Generative AI",
       "Jira",
       "Confluence",
+      "UI/UX"
     ],
     caseStudy: {
       problem:
@@ -26,7 +27,6 @@ export const projectsData = [
         "Built the front end for an AI-powered file ingestion engine — agents upload project documents and the AI extracts, maps, and inserts all data into the CRM with one click.",
         "Developed an interactive Q&A interface allowing staff to query internal datasets in natural language, replacing manual report requests.",
         "Integrated a learning module where the AI generates training materials and quizzes from the same uploaded project documents — eliminating manual L&D work per launch.",
-        "Built analytics dashboards for trend discovery, KPI tracking, and performance insights across teams.",
         "Delivered across multiple phases using Agile and Scrum, maintaining continuous feedback loops with stakeholders.",
       ],
       outcome:
@@ -38,71 +38,98 @@ export const projectsData = [
     order: 1,
     year: 2024,
   },
-  {
-    title: "Emirati Hub – Mini CRM",
-    slug: "emirati-hub",
-    description:
-      "An internal operations portal replacing scattered tools with a single interface for agents to manage leads, properties, and calendars.",
-    mainImage:
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1755171857/Latest_Products_1_apetoz.png",
-    gallery: [],
-    video: null,
-    tech: [
-      "React",
-      "Tailwind CSS",
-      "Material UI",
-      "React Query",
-      "Axios",
-      "React Router",
-      "JS-Cookie",
-      "Moment.js",
+{
+  title: "Emirati Hub – Mini CRM",
+  slug: "emirati-hub",
+  description:
+    "A purpose-built portal for 100 external local agents who needed CRM access without touching PSI's internal systems or sensitive data.",
+  mainImage:
+    "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1779535674/Login_d8tn1t.svg",
+  gallery: [
+    "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1779534879/Screenshot_2026-05-23_151237_odjyxl.png",
+    "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1779535359/Properties_keqlj9.png",
+    "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1779535414/Property_details_h8n9y6.svg",
+        "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1779535021/Screenshot_2026-05-23_151512_emn5rq.png",
+
+    "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1779535559/Add_new_lead_dbube7.svg",
+    "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1779535610/Calendar_l193ub.svg",
+    
+
+  ],
+  video: null,
+  tech: [
+    "React",
+    "Tailwind CSS",
+    "Material UI",
+    "React Query",
+    "Axios",
+    "React Router",
+    "JS-Cookie",
+    "Moment.js",
+  ],
+  caseStudy: {
+    problem:
+      "PSI launched a new initiative hiring part-time local agents to expand their sales force. These agents needed access to leads and properties but could not be given access to the internal CRM — it was too complex and contained sensitive company data. There was no lightweight alternative, no centralised API, and three separate databases that all needed to be read from simultaneously.",
+    built: [
+      "Built a simplified CRM portal from scratch in 7 working days, purpose-built for external local agents with no access to internal systems.",
+      "Reverse-engineered and integrated three separate CRM APIs with no centralised endpoint — hitting each login API independently on session start and tagging every data response with its source CRM to avoid confusion.",
+      "Implemented front-end deduplication logic to handle overlapping data returned from the three databases, ensuring agents never saw duplicate leads or properties.",
+      "Built dynamic lead routing so that when an agent submits a lead, it is automatically directed to the correct CRM based on the lead's data rather than requiring manual selection.",
+      "Used React Query caching to minimise redundant API calls across three live systems and keep the interface fast despite the complexity underneath.",
     ],
-    caseStudy: {
-      problem:
-        "Agents were managing their daily operations across multiple disjointed backend systems. Lead creation, property search, and activity tracking were fragmented, causing data duplication and slow response times.",
-      built: [
-        "Architected a unified React-based dashboard integrating multiple distinct backend APIs into a single user experience.",
-        "Implemented secure token management and role-based access control to validate credentials dynamically across different systems.",
-        "Engineered custom data-merging logic to eliminate duplicate listings and leads coming from disparate API sources.",
-        "Introduced React Query to aggressively cache responses, minimizing redundant requests and drastically improving page load speeds.",
-      ],
-      outcome:
-        "Delivered a fully functional agent portal consolidating eight modules into one interface. The system runs concurrent API requests in parallel, providing a real-time dashboard while significantly cutting down manual data entry for the sales team.",
-      stats: [],
-    },
-    pvt: true,
-    projectUrl: null,
-    order: 2,
-    year: 2025,
+    outcome:
+      "Delivered a fully working agent portal in 7 working days supporting 100 local agents. The agents interact with a simple, clean interface while the system silently manages authentication, data merging, and routing across three separate CRMs — none of which were designed to work together.",
+    stats: [
+      { value: "+100", label: "Local agents onboarded" },
+      { value: "7", label: "Working days to deliver" },
+      { value: "3", label: "CRMs unified" },
+    ],
   },
-  {
-    title: "PSI-International Portal – Event & Lead Management System",
-    slug: "psi-international-portal",
-    description:
-      "An event management and lead routing platform built for international real estate exhibitions and roadshows.",
-    mainImage:
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1755242339/Latest_Products_3_znag70.png",
-    gallery: [],
-    video: null,
-    tech: ["React", "Tailwind CSS", "Material UI", "React Router", "Axios"],
-    caseStudy: {
-      problem:
-        "International sales events lacked a cohesive digital system for tracking leads and generating proposals on the fly. Sales agents and operations teams struggled with manual data entry and fragmented CRM visibility during critical high-traffic roadshows.",
-      built: [
-        "Built a multi-module React portal with full CRUD capabilities for managing exhibition calendars, properties, and lead flows.",
-        "Coded dynamic lead routing and scoring logic that adapts instantly based on user input and event configurations.",
-        "Integrated the frontend directly with CRM APIs for real-time lead registration and automated proposal generation.",
-        "Developed a robust permission hierarchy to securely segment content visibility between admins, sales agents, and business development.",
-      ],
-      outcome:
-        "Replaced manual event tracking with a live portal used globally by multiple departments. Registration workflows are now automated, and stakeholders have immediate visibility into event performance without manual reporting.",
-      stats: [],
-    },
-    pvt: true,
-    projectUrl: null,
-    order: 3,
-    year: 2025,
+  pvt: true,
+  projectUrl: null,
+  order: 2,
+  year: 2025,
+},
+{
+  title: "PSI-International Portal – Event & Lead Management System",
+  slug: "psi-international-portal",
+  description:
+    "A unified role-based portal that replaced paper leads, Google Form surveys, and siloed emails across 4 departments managing PSI's international events.",
+  mainImage:
+    "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1779536260/Login_rdlk6n.svg",
+  gallery: [
+    "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1779536469/Home_svj6tn.png",
+    "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1779536684/Current_Event_popup_oourha.png",
+    "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1779536775/Support_i0tjcu.png",
+    "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1779536848/Add_New_Event_dbkh2s.png",
+  ],
+  video: null,
+  tech: ["React", "Tailwind CSS", "Material UI", "React Router", "Axios", "Power BI", "FullCalendar"],
+  caseStudy: {
+    problem:
+      "PSI attends international real estate events across multiple countries but had no centralised system to manage them. The business development team handled events in isolation — no other department knew what was happening or when. Agents were writing leads on paper or storing them in personal Excel sheets. Post-event surveys were sent via Google Forms. There was no way to track event outcomes, compare cost versus revenue, or give management visibility without manual reporting.",
+    built: [
+      "Built a role-based portal serving 4 departments — Business Development, Sales Operations, CRM, and field agents — each with different permissions and functions within the same system.",
+      "Replaced paper and Excel lead tracking with a structured lead registration flow tied directly to each event, capturing 700+ leads across international events.",
+      "Replaced Google Form post-event surveys with an in-portal survey system, storing responses directly in the database for analysis.",
+      "Integrated a Power BI dashboard per event allowing management to track attendance, leads generated, and cost versus revenue outcome.",
+      "Built an event calendar using FullCalendar giving all departments visibility into upcoming and past international events for the first time.",
+      "Integrated 3 CRM APIs to restructure and route lead data correctly based on event and agent context.",
+    ],
+    outcome:
+      "Four departments that previously operated in silos around international events now work through one system. Over 50 agents across international events no longer rely on paper or personal Excel sheets — 700+ leads are now registered, tracked, and routed across 3 CRMs automatically. Management has live event performance data without waiting on manual reports. Delivered in one week.",
+    stats: [
+      { value: "50+", label: "Agents supported" },
+      { value: "700+", label: "Leads captured" },
+      { value: "3", label: "CRMs integrated" },
+      { value: "1 week", label: "Delivery time" },
+    ],
   },
+  pvt: true,
+  projectUrl: null,
+  order: 3,
+  year: 2025,
+},
   {
     title: "Hilton Residences Dubai JLT – Luxury Living",
     slug: "hilton-residences-jlt",
@@ -114,6 +141,7 @@ export const projectsData = [
       "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1772784259/Screenshot_2026-03-06_120225_nb56at.png",
       "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1772784406/Screenshot_2026-03-06_120427_flgs40.png",
       "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1772784450/Screenshot_2026-03-06_120538_urw07p.png",
+      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1779537163/Screenshot_2026-05-23_155053_hdwwet.png",
       "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1772792407/Screenshot_2026-03-06_141813_jmciqa.png",
     ],
     video: null,
@@ -200,70 +228,9 @@ export const projectsData = [
       stats: [],
     },
     pvt: false,
-    projectUrl: "https://skps.vercel.app/",
+    projectUrl: "https://skps.com/",
     order: 6,
     year: 2026,
-  },
-  {
-    title: "Al Raha Beach - Landing Page",
-    slug: "al-raha-beach-landing-page",
-    description:
-      "A fast, map-integrated landing page presenting luxury waterfront properties for lead generation.",
-    mainImage:
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1772868889/Screenshot_2026-03-07_113239_xtv9m4.png",
-    gallery: [
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1772870393/Screenshot_2026-03-07_115802_yaxuyg.png",
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1772870494/Screenshot_2026-03-07_115925_wnbtbr.png",
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1772870548/Screenshot_2026-03-07_120033_mlyjib.png",
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1772870668/Screenshot_2026-03-07_120245_oct1vx.png",
-    ],
-    video: null,
-    tech: ["React", "Tailwind CSS", "Motion", "Swiper", "Leaflet"],
-    caseStudy: {
-      problem:
-        "Marketing teams needed a dedicated, standalone asset to quickly capture leads for a specific high-end neighborhood without routing traffic through the cluttered main corporate portal.",
-      built: [
-        "Architected a responsive interface using Tailwind CSS and Framer Motion for premium visual feedback.",
-        "Integrated Leaflet to provide an interactive, visual geographic layout of available amenities and units.",
-        "Configured a robust lead-capture web form connected directly to backend services.",
-      ],
-      outcome:
-        "Provided a focused, conversion-optimized digital asset that successfully isolated marketing traffic and streamlined data collection.",
-      stats: [],
-    },
-    pvt: false,
-    projectUrl: "https://psinv.net/services/RahaBeach/",
-    order: 7,
-    year: null,
-  },
-  {
-    title: "Saadiyat Island - Landing Page",
-    slug: "saadiyat-island-landing-page",
-    description:
-      "A responsive, map-enabled property showcase built to convert high-net-worth real estate traffic.",
-    mainImage:
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1753882856/Screenshot_2025_07_30_173954_2b184b3c8b.png",
-    gallery: [
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1753882765/saadiyatmini_0263ca2294.png",
-    ],
-    video: null,
-    tech: ["React", "Tailwind CSS", "react-hook-form", "swiper"],
-    caseStudy: {
-      problem:
-        "The sales team required a targeted digital campaign destination that could elegantly present premium waterfront properties while ensuring reliable form submissions under heavy ad traffic.",
-      built: [
-        "Constructed a modular React architecture optimizing image sliders and interactive maps for rigorous performance standards.",
-        "Implemented react-hook-form to rigidly control state and validation for the primary contact forms.",
-        "Applied precise Tailwind utility classes to ensure a seamless layout transition across all mobile formats.",
-      ],
-      outcome:
-        "Delivered a lightweight, highly responsive landing page that served as the reliable endpoint for expensive ad campaigns, ensuring no leads were lost to poor client-side performance.",
-      stats: [],
-    },
-    pvt: false,
-    projectUrl: "https://psinv.net/services/SaadiyatislandLP/",
-    order: 8,
-    year: null,
   },
   {
     title: "Loyalty Program",
@@ -330,125 +297,7 @@ export const projectsData = [
     order: 10,
     year: 2025,
   },
-  {
-    title: "Noxe - Movies App",
-    slug: "noxe-movies-app",
-    description:
-      "A dynamic movie database explorer combining third-party data-fetching with secure user authentication.",
-    mainImage:
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1753336736/noxe_f38a71bdce.png",
-    gallery: [
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1753337127/Noxe1_130f252d2f.png",
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1753336990/Noxe3_e8ed49dcdb.png",
-    ],
-    video:
-      "https://res.cloudinary.com/dkzx3gz4z/video/upload/v1753339042/2025_07_24_10_35_21_a878af3322.mp4",
-    tech: ["React", "Tailwind CSS", "JavaScript", "APIs"],
-    caseStudy: {
-      problem:
-        "There was a need to orchestrate complex async operations—fetching massive external datasets while concurrently handling secure, stateful user sessions.",
-      built: [
-        "Engineered reliable API integration layers to pull, parse, and render live cinematic metadata.",
-        "Implemented authentication flows to manage user sign-ups, logins, and private route protections.",
-        "Built responsive grid layouts with Tailwind CSS to handle unpredictable image sizes gracefully.",
-      ],
-      outcome:
-        "Delivered a fully interactive SPA that reliably handles asynchronous data loads and restricts data access based on authentication state.",
-      stats: [],
-    },
-    pvt: false,
-    projectUrl: "",
-    order: 11,
-    year: null,
-  },
-  {
-    title: "Bait Albahar - Landing Page",
-    slug: "bait-albahar-landing-page",
-    description:
-      "A lightweight, framework-free landing page demonstrating strict foundational web performance.",
-    mainImage:
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1753339853/bait_03b23b7919.png",
-    gallery: [
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1753339975/bait1_b839912b15.png",
-    ],
-    video: null,
-    tech: ["HTML", "CSS", "JavaScript"],
-    caseStudy: {
-      problem:
-        "Traditional heavy frameworks were causing unnecessary overhead for an otherwise entirely static informational company page. The goal was to eliminate dependencies entirely.",
-      built: [
-        "Authored semantic HTML5 syntax to ensure high accessibility scores.",
-        "Coded bespoke CSS media queries to handle complex responsive restructuring without bulky grid libraries.",
-        "Wrote vanilla JavaScript DOM manipulations to handle user interactions directly.",
-      ],
-      outcome:
-        "Shipped an ultra-fast, zero-dependency informational site that loads instantly and serves as a highly performant corporate touchpoint.",
-      stats: [],
-    },
-    pvt: false,
-    projectUrl: "https://asanes19.github.io/BaitAlbahar/",
-    order: 12,
-    year: null,
-  },
-  {
-    title: "Product Builder - CRUD App",
-    slug: "product-builder-crud-app",
-    description:
-      "An internal administrative tool engineered to manage product inventory via comprehensive CRUD commands.",
-    mainImage:
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1755011840/Latest_Products_ziv1iv.png",
-    gallery: [
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1753362984/Products1_2172df589b.png",
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1753363034/Products2_5cb1e1368e.png",
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1753363069/Products3_da3d3389cb.png",
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1753363095/Products4_674b585ecc.png",
-    ],
-    video: "2025-07-24-17-25-09.mp4",
-    tech: ["React", "Tailwind CSS", "JavaScript"],
-    caseStudy: {
-      problem:
-        "Product management was disorganized. There was no interface connecting non-technical staff to the underlying data architecture for daily inventory adjustments.",
-      built: [
-        "Constructed form architectures to rigidly capture distinct data types (pricing, category, hex colors).",
-        "Encoded state management to immediately reflect granular file edits and deletions without full-page reloads.",
-        "Designed clear visual feedback loops indicating successful save operations and error states.",
-      ],
-      outcome:
-        "Produced a robust, stable internal dashboard that safely exposes database management tasks to administrative users, minimizing direct data mishandling.",
-      stats: [],
-    },
-    pvt: false,
-    projectUrl: "https://productsbuilder.netlify.app/",
-    order: 13,
-    year: null,
-  },
-  {
-    title: "To Do App",
-    slug: "to-do-app",
-    description:
-      "A stateless browser-based utility application leveraging local storage for data persistence.",
-    mainImage:
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1753847613/Screenshot_2025_07_30_075053_12914b7491.png",
-    gallery: [
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1753847724/todo1_cd9e3afc5b.png",
-    ],
-    video: null,
-    tech: ["HTML", "CSS", "JavaScript"],
-    caseStudy: {
-      problem:
-        "During initial architectural studies, a reliable mechanism was needed to persist input data securely across session refreshes without relying on an external backend.",
-      built: [
-        "Programmed standard CRUD task functions to directly interface with the browser's localStorage API.",
-        "Built dynamic DOM injection scripts to immediately reflect the persistent memory state upon initialization.",
-        "Handcoded strict CSS styling to ensure the interactive elements remained functional and legible across viewports.",
-      ],
-      outcome:
-        "Shipped a functional, persistent utility tool entirely scoped to client-side technologies, demonstrating fundamental data state persistence techniques.",
-      stats: [],
-    },
-    pvt: false,
-    projectUrl: "https://asanes19.github.io/To-Do-App/",
-    order: 14,
-    year: null,
-  },
+
+
+  
 ];

@@ -2,8 +2,8 @@ const skillGroups = {
   "Core Stack": [
     "React",
     "Next.js",
-    "TypeScript",
     "JavaScript",
+    "TypeScript",
     "Tailwind CSS"
   ],
   "Front-End": [
@@ -15,19 +15,28 @@ const skillGroups = {
     "GSAP",
     "jQuery",
     "Zustand",
+    "Context API",
     "React Query",
+    "React Hook Form",
+    "Zod",
     "Material UI",
     "Shadcn/UI",
     "ECharts",
-    "Performance Optimization",
-    "Responsive Design",
-    "UX/UI"
+    "React Three Fiber (R3F)",
+    "Three.js",
+    "WebGL"
+  ],
+  "Testing": [
+    "Vitest",
+    "React Testing Library",
+    "Playwright"
   ],
   "API & Integrations": [
     "REST APIs",
-    "API Documentation",
+    "WebSockets",
     "Postman",
-    "Swagger"
+    "Swagger",
+    "API Documentation"
   ],
   "Data & Analytics": [
     "Python",
@@ -51,7 +60,11 @@ const skillGroups = {
     "Agile"
   ],
   "Other": [
-    "WordPress"
+    "WordPress",
+    "Performance Optimization",
+    "Responsive Design",
+    "UX/UI",
+    "Accessibility (WCAG)"
   ]
 };
 

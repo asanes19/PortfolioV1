@@ -43,7 +43,7 @@ const ImageSlider = ({ project }) => {
             <img
               src={img}
               alt={`${project.title} - Slide ${index + 1}`}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-top"
             />
           </div>
         ))}
