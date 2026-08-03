@@ -1,4 +1,4 @@
-import { FaLinkedinIn, FaBehance, FaWhatsapp } from "react-icons/fa";
+import { FaLinkedinIn, FaBehance, FaWhatsapp, FaEnvelope } from "react-icons/fa";
 
 const icons = [
   {
@@ -16,6 +16,12 @@ const icons = [
     url: "https://wa.me/971562588105",
     label: "WhatsApp",
   },
+  {
+    icon: <FaEnvelope />,
+    url: "mailto:asherif3001@gmail.com",
+    label: "Email",
+    sameTab: true,
+  },
 ];
 
 const SocialMedia = () => {
@@ -25,8 +31,8 @@ const SocialMedia = () => {
         <a
           key={index}
           href={item.url}
-          target="_blank"
-          rel="noopener noreferrer"
+          target={item.sameTab ? undefined : "_blank"}
+          rel={item.sameTab ? undefined : "noopener noreferrer"}
           aria-label={item.label}
           className="hover:text-heading transition-colors duration-200"
         >

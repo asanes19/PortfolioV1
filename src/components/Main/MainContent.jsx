@@ -6,14 +6,14 @@ import Skills from "./Skills";
 
 const MainContent = () => {
   return (
-    <div className="md:space-y-28 space-y-14 px-6 md:px-0 py-12 md:py-20">
-      <section className="flex flex-col gap-12 border-b border-divider pb-20" id="about">
+    <div className="md:space-y-16 space-y-14 px-6 md:px-0 py-12 md:py-20">
+      <section className="flex flex-col gap-12 border-b border-divider pb-12" id="about">
         <Description />
         <Skills />
       </section>
 
       <section id="experience">
-        <div className="space-y-12 border-b border-divider pb-20">
+        <div className="space-y-12 border-b border-divider pb-12">
           <Experience />
         </div>
       </section>

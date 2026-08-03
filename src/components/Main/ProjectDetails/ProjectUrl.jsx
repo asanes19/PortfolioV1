@@ -14,7 +14,7 @@ const ProjectUrl = ({ project }) => {
           </button>
         </a>
       ) : (
-        <span className="text-xs text-subtle italic">Private Project</span>
+        <span className="text-xs text-subtle italic">Private / Internal</span>
       )}
     </div>
   );

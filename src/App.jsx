@@ -1,6 +1,5 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import CustomCursor from "./ui/CustomCursor";
 
 // Lazy-load route-level pages for code splitting
 const MainPage = lazy(() => import("./components/Main/MainPage"));
@@ -30,19 +29,16 @@ const NotFound = () => (
 
 function App() {
   return (
-    <>
-      <CustomCursor />
-      <Router>
-        <Suspense fallback={<PageLoader />}>
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/project/:id" element={<ProjectDetails />} />
-            <Route path="/projects/" element={<AllProjects />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-      </Router>
-    </>
+    <Router>
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/project/:id" element={<ProjectDetails />} />
+          <Route path="/projects/" element={<AllProjects />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
+    </Router>
   );
 }
 
