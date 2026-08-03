@@ -6,25 +6,36 @@ const skillGroups = {
     "TypeScript",
     "Tailwind CSS"
   ],
+  "Back-End": [
+    "Node.js",
+    "Express",
+    "REST APIs",
+    "PHP",
+    "Python",
+    "WebSockets",
+    "Authentication & RBAC"
+  ],
+  "Database": [
+    "PostgreSQL",
+    "SQL",
+    "MySQL",
+    "MongoDB",
+    "SQLite",
+    "Data Modelling",
+    "ETL"
+  ],
   "Front-End": [
     "HTML",
     "CSS",
     "SASS",
-    "Bootstrap",
     "Framer Motion",
-    "GSAP",
-    "jQuery",
     "Zustand",
     "Context API",
     "React Query",
     "React Hook Form",
     "Zod",
     "Material UI",
-    "Shadcn/UI",
-    "ECharts",
-    "React Three Fiber (R3F)",
-    "Three.js",
-    "WebGL"
+    "Shadcn/UI"
   ],
   "Testing": [
     "Vitest",
@@ -32,23 +43,18 @@ const skillGroups = {
     "Playwright"
   ],
   "API & Integrations": [
-    "REST APIs",
-    "WebSockets",
     "Postman",
     "Swagger",
     "API Documentation"
   ],
   "Data & Analytics": [
-    "Python",
-    "SQL",
     "Power BI",
-    "SQLite"
+    "ECharts"
   ],
   "DevOps & Tools": [
     "Git",
     "GitHub",
     "CI/CD",
-    "FileZilla",
     "AWS (SES, SNS)"
   ],
   "Design & Collaboration": [
@@ -61,6 +67,7 @@ const skillGroups = {
   ],
   "Other": [
     "WordPress",
+    "Odoo",
     "Performance Optimization",
     "Responsive Design",
     "UX/UI",
@@ -73,7 +80,7 @@ const Skills = () => {
 <section className="space-y-4 text-sm text-gray-300">
   {Object.entries(skillGroups).map(([group, skills]) => (
     <div key={group} className="flex items-start gap-6">
-      
+
       {/* Left Label */}
       <span className="w-32 shrink-0 text-gray-500 font-medium">
         {group}

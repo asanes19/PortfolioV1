@@ -7,7 +7,9 @@ import { getImageUrl } from "../../utils/getImageUrl";
 const AllProjects = () => {
   const navigate = useNavigate();
 
-  const projects = projectsData.slice().sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+  const projects = projectsData
+    .slice()
+    .sort((a, b) => (a.order ?? Infinity) - (b.order ?? Infinity));
 
   return (
     <section className="text-body max-w-screen-xl mx-auto py-20 px-4">
@@ -74,7 +76,9 @@ const AllProjects = () => {
                       {proj.projectUrl.replace(/^https?:\/\//, "")}
                     </a>
                   ) : (
-                    <span className="text-xs text-subtle italic">No URL</span>
+                    <span className="text-xs text-subtle italic">
+                      Private / Internal
+                    </span>
                   )}
                 </div>
 

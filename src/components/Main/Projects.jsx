@@ -7,7 +7,10 @@ import { getImageUrl } from "../../utils/getImageUrl";
 const Projects = () => {
   const navigate = useNavigate();
 
-  const visibleProjects = projectsData.slice(0, 4);
+  const visibleProjects = projectsData
+    .slice()
+    .sort((a, b) => (a.order ?? Infinity) - (b.order ?? Infinity))
+    .slice(0, 4);
 
   return (
     <div className="flex flex-col gap-6">
