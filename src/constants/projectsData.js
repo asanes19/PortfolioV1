@@ -5,44 +5,50 @@ export const projectsData = [
     title: "PSAI – Data & Automation Platform",
     slug: "power-assist",
     description:
-      "An internal AI-powered platform built to automate manual real estate operations, eliminate data entry, and surface actionable insights for decision-makers.",
+      "An internal platform for PSI's real estate teams that turns project documents into reviewed CRM records, queryable datasets, and generated training assessments.",
     mainImage:
       "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1779536037/Screenshot_2026-05-23_153015_ssufan.png",
     gallery: [],
     video: null,
     tech: [
       "React",
-      "JavaScript",
-      "Python",
-      "Power BI",
+      "React Router",
+      "Axios",
+      "Leaflet",
+      "Framer Motion",
+      "Tailwind CSS",
+      "js-cookie",
       "Generative AI",
-      "Jira",
-      "Confluence",
-      "UI/UX"
     ],
     caseStudy: {
       problem:
-        "Adding a new real estate project to the CRM was a fully manual process — someone had to read through project documents and enter every detail by hand. The L&D team was also manually creating training materials and quizzes for agents every time a new project launched. There was no centralized way to analyze data or interact with internal datasets without going through multiple disconnected tools.",
+        "Every new project launch meant someone reading a developer's brochure and retyping dozens of fields into the CRM by hand, then rebuilding training material for agents from the same document. Nobody could query those documents directly. An extraction service existed, but its output could not be trusted straight into the CRM: values arrive as display text where the CRM stores numeric IDs, fields come back missing, and the same project is often already there under a slightly different name.",
       built: [
-        "Built the front end for an AI-powered file ingestion engine — agents upload project documents and the AI extracts, maps, and inserts all data into the CRM with one click.",
-        "Developed an interactive Q&A interface allowing staff to query internal datasets in natural language, replacing manual report requests.",
-        "Integrated a learning module where the AI generates training materials and quizzes from the same uploaded project documents — eliminating manual L&D work per launch.",
-        "Delivered across multiple phases using Agile and Scrum, maintaining continuous feedback loops with stakeholders.",
+        "Designed the write path so no extracted value reaches the CRM unreviewed: every field renders as an editable control, and nulls are stripped from the payload so a partial extraction can't overwrite existing CRM data.",
+        "Fetched the property's current CRM record alongside each extraction so reviewers compare AI output against the live value field by field, and can copy the CRM value rather than retype it.",
+        "Built the mapping layer between the two shapes: reverse lookups resolve extracted display names to the CRM's numeric IDs, and column-oriented response arrays are zipped into rows for review and unzipped on insert.",
+        "Isolated each extraction call behind its own catch and fetched the remaining sections concurrently once the first resolved, so one failing section degrades to a missing card rather than an empty screen.",
+        "Gated the pipeline behind a similarity-scored duplicate check whose outcome becomes the record identity every later stage reads, so one reviewer decision switches the whole flow between insert and update.",
+        "Rendered each answer through a progressive reveal before swapping to markdown, trading true streaming — which the single-response endpoint doesn't support — for immediate feedback on slow answers.",
       ],
       outcome:
-        "Eliminated manual CRM data entry for every new project launch — a process that previously required someone to read and re-enter an entire document by hand. The L&D team stopped creating training materials manually. Decision-makers gained a live, queryable view of internal data without waiting on reports.",
-      stats: [],
+        "Adding a project to the CRM became a review pass instead of a retyping job: values arrive pre-filled and already matched against the existing record, so the reviewer edits or rejects rather than types. L&D generated assessments from the same uploaded documents instead of writing them per launch. Staff queried project documents directly rather than requesting a report.",
+      stats: [
+        { value: "3–5", label: "Project launches per month" },
+        { value: "5", label: "Review stages before write" },
+        { value: "36", label: "CRM fields mapped and editable" },
+      ],
     },
     pvt: true,
     projectUrl: null,
-    order: 1,
+    order: 4,
     year: 2024,
   },
 {
-  title: "Emirati Hub – Mini CRM",
+  title: "Emirati Hub",
   slug: "emirati-hub",
   description:
-    "A purpose-built portal for 100 external local agents who needed CRM access without touching PSI's internal systems or sensitive data.",
+    "A lead and inventory portal for 100 external agents, authenticating against three unrelated CRM instances simultaneously and merging their leads, properties and units behind one interface.",
   mainImage:
     "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1779535674/Login_d8tn1t.svg",
   gallery: [
@@ -59,26 +65,26 @@ export const projectsData = [
   video: null,
   tech: [
     "React",
-    "Tailwind CSS",
-    "Material UI",
     "React Query",
-    "Axios",
     "React Router",
-    "JS-Cookie",
-    "Moment.js",
+    "Axios",
+    "Material UI",
+    "Tailwind CSS",
+    "js-cookie",
   ],
   caseStudy: {
     problem:
-      "PSI launched a new initiative hiring part-time local agents to expand their sales force. These agents needed access to leads and properties but could not be given access to the internal CRM — it was too complex and contained sensitive company data. There was no lightweight alternative, no centralised API, and three separate databases that all needed to be read from simultaneously.",
+      "PSI hired 100 part-time local agents to extend its sales force. They needed leads, inventory and their own pipeline, but could not be given internal CRM access — too complex, and it exposed sensitive company data. Those records lived in three unrelated CRM instances, each with its own login, its own user identity for the same person, and no shared ID space or aggregating endpoint. Nothing sat between the agents and those systems, and delivery was seven working days.",
     built: [
-      "Built a simplified CRM portal from scratch in 7 working days, purpose-built for external local agents with no access to internal systems.",
-      "Reverse-engineered and integrated three separate CRM APIs with no centralised endpoint — hitting each login API independently on session start and tagging every data response with its source CRM to avoid confusion.",
-      "Implemented front-end deduplication logic to handle overlapping data returned from the three databases, ensuring agents never saw duplicate leads or properties.",
-      "Built dynamic lead routing so that when an agent submits a lead, it is automatically directed to the correct CRM based on the lead's data rather than requiring manual selection.",
-      "Used React Query caching to minimise redundant API calls across three live systems and keep the interface fast despite the complexity underneath.",
+      "Modelled the source CRM as a required field on every record, since IDs are only valid inside the instance that issued them — making provenance rather than a shared key the routing input for every subsequent call.",
+      "Authenticated one credential pair against three independent login endpoints on sign-in, and failed the whole login unless the agent's role existed in all three, rather than admitting a partly-provisioned user into a half-working portal.",
+      "Split failure handling by cause on every fan-out: an unreachable CRM degraded the result set through settled promises, while a single 401 cleared all three sessions and forced re-login.",
+      "Routed each new lead to one destination CRM, inherited from the selected unit's source or chosen explicitly, and scoped the form's property search to that instance so every ID in the payload was valid where the lead landed.",
+      "Reconciled overlapping property records on name identity — the only attribute the three instances shared — after establishing that no other key was common across the systems.",
+      "Tuned cache lifetimes per data type, an hour for inventory and five minutes for an agent's own leads, because one uncached page load cost up to six upstream calls across three systems.",
     ],
     outcome:
-      "Delivered a fully working agent portal in 7 working days supporting 100 local agents. The agents interact with a simple, clean interface while the system silently manages authentication, data merging, and routing across three separate CRMs — none of which were designed to work together.",
+      "Shipped in seven working days and put 100 local agents on it. Each sign-in opened three authenticated sessions; each list page fanned out to as many as six upstream calls and returned one merged, source-tagged view; each submitted lead landed in exactly one CRM with IDs valid there. With no service layer available to sit between the agents and the three CRMs, the session, aggregation and routing logic was designed to run client-side without leaking the complexity into the interface.",
     stats: [
       { value: "+100", label: "Local agents onboarded" },
       { value: "7", label: "Working days to deliver" },
@@ -87,14 +93,61 @@ export const projectsData = [
   },
   pvt: true,
   projectUrl: null,
-  order: 2,
+  order: 1,
   year: 2025,
 },
+  {
+    title: "Raqeem – Multi-Tenant Dealership Platform",
+    slug: "raqeem",
+    description:
+      "Inventory, expense and profit tracking for UAE used-car dealerships, where each car's true profit is derived from its purchase price and running costs rather than tracked by hand.",
+    mainImage:
+      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1785776421/ChatGPT_Image_Aug_3_2026_08_58_14_PM_ss2s34.png",
+    gallery: [
+      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1785777676/Screenshot_2026-08-03_211741_apy8jj.png",
+      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1785777676/Screenshot_2026-08-03_211814_lqffsp.png",
+      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1785777676/Screenshot_2026-08-03_211930_yioopg.png",
+    ],
+    video: null,
+    tech: [
+      "PostgreSQL",
+      "Row Level Security",
+      "Supabase",
+      "Next.js 16",
+      "TypeScript",
+      "Turborepo",
+      "Playwright",
+      "next-intl",
+    ],
+    caseStudy: {
+      stats: [
+        { value: "3", label: "Authorization layers" },
+        { value: "2", label: "Languages, full RTL" },
+        { value: "RLS", label: "Isolation enforced in Postgres" },
+      ],
+      problem:
+        "A used-car dealership's profit exists only per car: a purchase price, then months of running costs — registration, garage work, parts, commission — booked against that vehicle before it sells. Owners need that number per car, per brand and per price band. Staff need to do the daily work without being able to destroy records or change who they are. Several dealerships share one system and none may see another's cars. All of it works in Arabic and English.",
+      built: [
+        "Modelled per-car profit as a derived database view instead of a stored total, because a stored figure drifts the moment an expense is edited — and a generated column cannot reference the separate expense table it depends on.",
+        "Enforced tenant isolation in row-level database policies rather than in application code, so a request that skips the app entirely and calls the auto-generated REST API directly is still scoped to a single dealership.",
+        "Closed a privilege-escalation path with column-level UPDATE grants after finding that row-level policies cannot compare a row's old and new values, which left no way to express \"this column is immutable\" as a policy.",
+        "Designed the analytics layer as SQL functions running with the caller's privileges rather than the definer's, so pushing aggregation into the database did not turn the reporting layer into the one place tenant isolation leaked.",
+        "Passed the aging threshold, carrying-cost rate and price-band boundaries into those functions as parameters instead of hardcoding them in SQL, keeping one source of truth shared by the queries and the labels that describe them.",
+        "Built a standalone stand-in for the hosted auth and REST APIs so the browser suite runs deterministically offline, including a test that captures an owner's delete request and replays it from a staff session.",
+      ],
+      outcome:
+        "Shipped as a working monorepo covering the full car lifecycle, an expense ledger, per-showroom expense categories and an owner analytics dashboard whose every figure is aggregated in SQL rather than computed in the browser. Covered by a browser test suite that includes requests forged to bypass the interface's permission checks entirely. Not deployed: built to production standards, not to a launch date.",
+    },
+    pvt: false,
+    projectUrl: null,
+    order: 2,
+    year: 2026,
+  },
 {
   title: "PSI-International Portal – Event & Lead Management System",
   slug: "psi-international-portal",
   description:
-    "A unified role-based portal that replaced paper leads, Google Form surveys, and siloed emails across 4 departments managing PSI's international events.",
+    "A role-based events portal where four departments hold different permissions over the same international event records, replacing paper lead sheets, personal Excel files and Google Form surveys.",
   mainImage:
     "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1779536260/Login_rdlk6n.svg",
   gallery: [
@@ -104,25 +157,25 @@ export const projectsData = [
     "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1779536848/Add_New_Event_dbkh2s.png",
   ],
   video: null,
-  tech: ["React", "Tailwind CSS", "Material UI", "React Router", "Axios", "Power BI", "FullCalendar"],
+  tech: ["React", "React Router", "Axios", "React Query", "FullCalendar", "Material UI", "Tailwind CSS", "js-cookie"],
   caseStudy: {
     problem:
-      "PSI attends international real estate events across multiple countries but had no centralised system to manage them. The business development team handled events in isolation — no other department knew what was happening or when. Agents were writing leads on paper or storing them in personal Excel sheets. Post-event surveys were sent via Google Forms. There was no way to track event outcomes, compare cost versus revenue, or give management visibility without manual reporting.",
+      "PSI attends international real estate events across several countries. Business development ran them alone; no other department knew which events existed or who was attending. Agents recorded leads on paper or in personal Excel files, so lead ownership and event attribution were lost before the data reached any CRM — and PSI runs three separate CRM instances with separate logins. Post-event feedback arrived through Google Forms, disconnected from the events. Nobody could compare an event's cost against what it returned.",
     built: [
-      "Built a role-based portal serving 4 departments — Business Development, Sales Operations, CRM, and field agents — each with different permissions and functions within the same system.",
-      "Replaced paper and Excel lead tracking with a structured lead registration flow tied directly to each event, capturing 700+ leads across international events.",
-      "Replaced Google Form post-event surveys with an in-portal survey system, storing responses directly in the database for analysis.",
-      "Integrated a Power BI dashboard per event allowing management to track attendance, leads generated, and cost versus revenue outcome.",
-      "Built an event calendar using FullCalendar giving all departments visibility into upcoming and past international events for the first time.",
-      "Integrated 3 CRM APIs to restructure and route lead data correctly based on event and agent context.",
+      "Modelled permissions as server-issued role flags fetched at login rather than separate per-department screens, so all four departments share one event view and every action is gated by role combined with the event's date.",
+      "Enforced those rules at the component and CRM-token boundary rather than in route guards — a deliberate scoping call given no portal-side backend to enforce against, and the first thing I'd move server-side given one.",
+      "Derived lead routing from which of three CRM instances an agent's credentials authenticated against, rather than a mapping table, then stamped each lead with the event as its media source and the agent as owner.",
+      "Flattened a single lead form into each CRM's create-lead contract — splitting names, wrapping scalars into arrays, and substituting a sentinel email when agents left it blank so CRM deduplication wouldn't merge unrelated contacts.",
+      "Handled CRM write failures by separating expired sessions, which clear tokens and bounce to login, from transient errors the agent retries by hand; the form keeps its state, but there is no offline queue.",
+      "Replaced the Google Form survey with six in-portal sections that flatten to one 40-column record per agent per event, keyed to event and agent so responses join back to the event they describe.",
     ],
     outcome:
-      "Four departments that previously operated in silos around international events now work through one system. Over 50 agents across international events no longer rely on paper or personal Excel sheets — 700+ leads are now registered, tracked, and routed across 3 CRMs automatically. Management has live event performance data without waiting on manual reports. Delivered in one week.",
+      "Four departments worked from one event record instead of separate spreadsheets and inboxes. Over 50 agents registered 700+ leads at international events, each written into the CRM that owned the agent and tagged to its event. Management read attendance, lead volume and cost-versus-revenue from a shared calendar and embedded Power BI reports. First working version shipped in a week, with features added over the following months.",
     stats: [
       { value: "50+", label: "Agents supported" },
       { value: "700+", label: "Leads captured" },
       { value: "3", label: "CRMs integrated" },
-      { value: "1 week", label: "Delivery time" },
+      { value: "1 week", label: "To first working version" },
     ],
   },
   pvt: true,
@@ -161,38 +214,6 @@ export const projectsData = [
     },
     pvt: false,
     projectUrl: "https://hiltonresidencesjlt.ae/",
-    order: 4,
-    year: 2026,
-  },
-  {
-    title: "Mostafa Hamdy - UI/UX Team Lead Portfolio",
-    slug: "mostafa-hamdy-portfolio",
-    description:
-      "A custom professional portfolio showcasing a decade of design work through precise layouts and micro-animations.",
-    mainImage:
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1772867338/Screenshot_2026-03-07_110649_fqyi1t.png",
-    gallery: [
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1772867476/Screenshot_2026-03-07_110838_y3d7ld.png",
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1772867572/Screenshot_2026-03-07_111025_jhos5w.png",
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1772867738/Screenshot_2026-03-07_111153_kv2qey.png",
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1772867853/Screenshot_2026-03-07_111529_yjokax.png",
-    ],
-    video: null,
-    tech: ["React", "Tailwind CSS", "Framer Motion", "Netlify"],
-    caseStudy: {
-      problem:
-        "A high-level design lead needed a digital home that matched their aesthetic standards. Off-the-shelf templates could not support the bespoke animations, exact typography, and visual precision required.",
-      built: [
-        "Translated high-fidelity Figma designs into pixel-perfect React components using Tailwind CSS.",
-        "Implemented subtle scroll-reveals and hover states with Framer Motion to enhance the interactive feel.",
-        "Optimized image galleries to ensure high-quality design assets loaded instantly across all device sizes.",
-      ],
-      outcome:
-        "Provided a fast, deeply customized digital portfolio that accurately reflects the client's design philosophy and secures new business.",
-      stats: [],
-    },
-    pvt: false,
-    projectUrl: "https://mostafahamdy00.netlify.app/",
     order: 5,
     year: 2026,
   },
@@ -231,71 +252,6 @@ export const projectsData = [
     projectUrl: "https://skps.com/",
     order: 6,
     year: 2026,
-  },
-  {
-    title: "Loyalty Program",
-    slug: "loyalty-program",
-    description:
-      "A CRM-connected portal letting real estate clients browse exclusive offers and trigger automated redemptions.",
-    mainImage:
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1753939918/loyaltymini_b9e0b9b565.png",
-    gallery: [
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1753940064/loyalty1_138f51648c.png",
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1753942429/loyalty2_c91d19858b.png",
-    ],
-    video: null,
-    tech: ["React", "Tailwind CSS", "Framer Motion", "JavaScript", "Axios"],
-    caseStudy: {
-      problem:
-        "Exclusive partner offers for clients were being communicated ineffectively via manual emails. There was no self-serve platform where clients could view deals and actively claim them.",
-      built: [
-        "Coded a responsive React portal using Axios to dynamically fetch, categorize, and display real-time partner offers.",
-        "Wired redemption actions to instantly insert leads into the overarching CRM database.",
-        "Triggered automated email confirmation hooks based on successful client interactions.",
-      ],
-      outcome:
-        "Replaced manual email distributions with an interactive portal. Clients can now independently discover and claim rewards, automatically logging their engagement within the CRM.",
-      stats: [],
-    },
-    pvt: false,
-    projectUrl: "https://loyalty-program.psinv.net/",
-    order: 9,
-    year: null,
-  },
-  {
-    title: "DeepSpaceX – Lyria Clone",
-    slug: "deepspacex",
-    description:
-      "A front-end technical clone replicating complex scroll animations, typography effects, and layout structures.",
-    mainImage:
-      "https://res.cloudinary.com/dkzx3gz4z/image/upload/v1755257056/Screenshot_2025-08-15_152258_hfjx4m.png",
-    gallery: [],
-    video: null,
-    tech: [
-      "React",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Lenis",
-      "SplitType",
-      "Lucide React",
-      "React Intersection Observer",
-    ],
-    caseStudy: {
-      problem:
-        "Standard web layouts lacked the immersive storytelling capability seen in top-tier promotional sites like DeepMind’s Lyria. I needed an environment to push the boundaries of scroll-driven DOM manipulation and cinematic text reveals.",
-      built: [
-        "Integrated Lenis for mathematically smooth scroll hijacking while preserving accessibility.",
-        "Employed SplitType parsing combined with Intersection Observers to trigger synchronized, character-by-character reveals.",
-        "Structured state-driven Framer Motion variants to ensure animations fired accurately independent of scroll direction.",
-      ],
-      outcome:
-        "Created a pixel-perfect, highly animated UI that functions smoothly without sacrificing frame rates, demonstrating advanced control over complex modern web animations.",
-      stats: [],
-    },
-    pvt: false,
-    projectUrl: "https://deepspacex.netlify.app/",
-    order: 10,
-    year: 2025,
   },
 
 

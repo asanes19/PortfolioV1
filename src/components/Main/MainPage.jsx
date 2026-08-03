@@ -3,13 +3,13 @@ import MainSide from "./../Sidebar/MainSide";
 import MainContent from "./MainContent";
 import { useEffect } from "react";
 
+const sectionIds = ["about", "experience", "projects"];
+
 const MainPage = () => {
-  const sectionIds = ["about", "experience", "projects"];
   const activeSection = useActiveSection(sectionIds);
 
   useEffect(() => {
     document.title = "Abdelrahman Sherif — Software Engineer";
-    console.log(activeSection);
   }, []);
 
   return (

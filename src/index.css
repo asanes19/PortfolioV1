@@ -5,8 +5,8 @@
 :root {
   --color-bg: #0d0d0d;
   --color-heading: #e8e8e8;
-  --color-body: #666666;
-  --color-subtle: #444444;
+  --color-body: #8f8f8f;
+  --color-subtle: #808080;
   --color-accent: #4f8ef7;
   --color-border: #1e1e1e;
   --color-border-subtle: #222222;
@@ -40,11 +40,21 @@ body {
   font-style: normal;
 }
 
-/* Hide default cursor on desktop for custom cursor */
-@media (pointer: fine) {
-  *, *::before, *::after {
-    cursor: none !important;
-  }
+/* ===== Focus =====
+   Tailwind's transition-colors includes outline-color, so a ring that only gets
+   its colour on :focus-visible animates in from currentColor. Pre-setting the
+   colour on everything means focus changes outline-style/width only, and the
+   ring appears instantly without disabling any other transition. */
+*,
+*::before,
+*::after {
+  outline-color: var(--color-accent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 /* ===== Scrollbar ===== */

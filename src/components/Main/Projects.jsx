@@ -21,19 +21,32 @@ const Projects = () => {
         return (
           <div
             key={project.slug}
+            role="link"
+            tabIndex={0}
+            aria-label={`View project: ${project.title}`}
             onClick={() => navigate(`/project/${project.slug}`)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                navigate(`/project/${project.slug}`);
+              }
+            }}
             className="card-hover flex flex-col md:flex-row w-full gap-5 group cursor-pointer rounded-md md:p-4"
           >
-            <div className="md:w-1/4">
-              {imageUrl && (
+            {imageUrl && (
+              <div className="md:w-1/4">
                 <img
                   src={imageUrl}
                   alt={project.title}
                   className="w-full max-w-[200px] rounded border border-border"
                 />
-              )}
-            </div>
-            <div className="md:w-3/4 flex flex-col gap-3">
+              </div>
+            )}
+            <div
+              className={`${
+                imageUrl ? "md:w-3/4" : "w-full"
+              } flex flex-col gap-3`}
+            >
               <div className="flex gap-2 items-center text-heading group-hover:text-heading/80 transition-colors duration-300">
                 <h2 className="font-semibold">{project.title}</h2>
                 <span className="group-hover:pb-1 group-hover:pl-1 transition-all duration-300 ease-in-out">
@@ -58,7 +71,7 @@ const Projects = () => {
 
       <button
         onClick={() => navigate("/projects")}
-        className="text-heading font-semibold hover:text-body transition-all text-sm flex items-center gap-1 self-start mt-4"
+        className="text-heading font-semibold hover:text-body transition-colors text-sm flex items-center gap-1 self-start mt-4"
       >
         View Full Project Archive <MdArrowOutward />
       </button>

@@ -15,7 +15,8 @@ const AllProjects = () => {
     <section className="text-body max-w-screen-xl mx-auto py-20 px-4">
       <div className="flex items-center gap-4 mb-10">
         <button
-          className="text-body border cursor-pointer border-border-subtle rounded-full p-2 underline text-sm text-left hover:text-heading transition-colors duration-200"
+          aria-label="Go back"
+          className="text-body border cursor-pointer border-border-subtle rounded-full p-2 text-sm text-left hover:text-heading transition-colors duration-200"
           onClick={() => navigate(-1)}
         >
           <IoChevronBackOutline />
@@ -41,6 +42,15 @@ const AllProjects = () => {
               <div
                 onClick={() => navigate(`/project/${proj.slug}`)}
                 key={proj.slug}
+                role="link"
+                tabIndex={0}
+                aria-label={`View project: ${proj.title}`}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    navigate(`/project/${proj.slug}`);
+                  }
+                }}
                 className="card-hover border-b cursor-pointer group border-divider last:border-none px-2 py-8 justify-between flex flex-col md:flex-row gap-6 items-center md:items-start"
               >
                 {/* Project Image */}
@@ -58,13 +68,13 @@ const AllProjects = () => {
                   )}
                 </div>
 
-                <h3 className="font-semibold w-[250px] text-heading group-hover:text-heading/80 transition-colors duration-300">
+                <h3 className="font-semibold w-full md:w-[250px] text-heading group-hover:text-heading/80 transition-colors duration-300">
                   {proj.title}
                 </h3>
 
-                <p className="text-sm text-body w-[400px]">{proj.description}</p>
+                <p className="text-sm text-body w-full md:w-[400px]">{proj.description}</p>
 
-                <div className="w-[230px]">
+                <div className="w-full md:w-[230px]">
                   {proj.projectUrl ? (
                     <a
                       href={proj.projectUrl}
@@ -82,7 +92,7 @@ const AllProjects = () => {
                   )}
                 </div>
 
-                <div className="flex w-[250px] flex-wrap gap-2">
+                <div className="flex w-full md:w-[250px] flex-wrap gap-2">
                   {techList.map((t, i) => (
                     <span
                       key={`${proj.slug}-tech-${i}`}

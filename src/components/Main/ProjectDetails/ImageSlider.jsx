@@ -54,13 +54,15 @@ const ImageSlider = ({ project }) => {
         <>
           <button
             onClick={goToPrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 p-2 rounded-full cursor-pointer backdrop-blur-sm transition-all text-white border border-border-subtle"
+            aria-label={`Previous image of ${project.title}`}
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 p-2 rounded-full cursor-pointer backdrop-blur-sm transition-colors text-white border border-border-subtle"
           >
             <IoChevronBackOutline className="text-white" />
           </button>
           <button
             onClick={goToNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 p-2 rounded-full cursor-pointer backdrop-blur-sm transition-all text-white border border-border-subtle"
+            aria-label={`Next image of ${project.title}`}
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 p-2 rounded-full cursor-pointer backdrop-blur-sm transition-colors text-white border border-border-subtle"
           >
             <IoChevronForwardOutline className="text-white" />
           </button>
@@ -74,7 +76,9 @@ const ImageSlider = ({ project }) => {
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              aria-label={`Go to image ${index + 1} of ${images.length}`}
+              aria-current={index === currentIndex}
+              className={`w-2 h-2 rounded-full transition-[width,background-color] duration-300 ${
                 index === currentIndex ? "bg-white w-6" : "bg-white/50"
               }`}
             />
